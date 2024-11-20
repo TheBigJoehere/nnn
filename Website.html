@@ -1,0 +1,127 @@
+
+<style>
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Center Text Animation */
+.center-text {
+    text-align: center;
+    margin-top: 20%;
+    font-size: 3rem;
+    animation: flow-away 5s infinite;
+}
+
+/* Glowing Button */
+.glowing-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    color: black;
+    background: linear-gradient(45deg, cyan, magenta);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    animation: glow 1.5s infinite alternate;
+    transition: transform 0.3s ease;
+}
+
+.glowing-button:hover {
+    transform: scale(1.1);
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px cyan;
+    }
+    to {
+        box-shadow: 0 0 20px magenta;
+    }
+}
+
+/* Gallery */
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 50px 0;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.gallery img {
+    width: 300px;
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+/* Keyframes for text flow-away */
+@keyframes flow-away {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-200px);
+        opacity: 0;
+    }
+}
+
+/* JavaScript-Activated Fading */
+.gallery.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Black Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="center-text">Welcome to My Animated Website</h1>
+        </header>
+        <button class="glowing-button">Click Me</button>
+        <section class="gallery">
+            <img src="https://via.placeholder.com/300" alt="Gallery Image 1">
+            <img src="https://via.placeholder.com/300" alt="Gallery Image 2">
+            <img src="https://via.placeholder.com/300" alt="Gallery Image 3">
+        </section>
+    </div>
+    <script src="script.js"></script>
+
+
+
+
+  </body>
+</html>
+
+
+<script>
+  document.addEventListener('scroll', () => {
+    const gallery = document.querySelector('.gallery');
+    const galleryTop = gallery.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (galleryTop < windowHeight && galleryTop > 0) {
+        gallery.classList.add('visible');
+    } else {
+        gallery.classList.remove('visible');
+    }
+});
+
+</script>
